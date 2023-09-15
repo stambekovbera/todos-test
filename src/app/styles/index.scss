@@ -1,0 +1,33 @@
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700';
+@import 'reset';
+@import './vars/global';
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    color: #000000;
+    font: var(--font-m);
+}
+
+.wrapper {
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    font: var(--font-m);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.content-page {
+    display: flex;
+    gap: 15px;
+}
+
+.page-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+}
