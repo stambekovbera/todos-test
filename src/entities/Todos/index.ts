@@ -21,3 +21,6 @@ export {
 export {
     getSortedTodos
 } from './model/selectors/getSortedTodos/getSortedTodos.ts';
+export {
+    getNotDoneTodos
+} from './model/selectors/getNotDoneTodos/getNotDoneTodos.ts';

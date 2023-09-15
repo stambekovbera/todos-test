@@ -1,9 +1,10 @@
 import classes from './TodoFilters.module.scss';
 import cn from 'classnames';
 import React from 'react';
-import { Box, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { getTodosSort, todosActions } from '@/entities/Todos';
+import { Box, Button, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
+import { getNotDoneTodos, getTodosSort, todosActions } from '@/entities/Todos';
 import { ITodosSort } from '@/entities/Todos/model/types/todos.ts';
+import { notification } from '@/shared/lib/notification/notification.ts';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch.ts';
 import { useSelector } from 'react-redux';
 
@@ -18,6 +19,7 @@ const TodoFiltersComponent: React.FC<ITodoFiltersProps> = (props) => {
 
     const dispatch = useAppDispatch();
     const value = useSelector( getTodosSort );
+    const notDoneTodos = useSelector( getNotDoneTodos );
 
     const onChange = React.useCallback( (_event: React.MouseEvent<HTMLElement>, value: ITodosSort | null) => {
         if (value !== null) {
@@ -25,36 +27,55 @@ const TodoFiltersComponent: React.FC<ITodoFiltersProps> = (props) => {
         }
     }, [ dispatch ] );
 
+    const onClearCompleted = React.useCallback( () => {
+        dispatch( todosActions.clearCompletedTodos() );
+
+        notification( {
+            message: 'Completed todos successfully deleted',
+            type: 'success',
+        } );
+    }, [ dispatch ] );
+
     return (
         <Box className={ cn( classes.filters, {}, [ className ] ) }>
-            <ToggleButtonGroup
-                value={ value }
-                exclusive
-                onChange={ onChange }
-                color='primary'
+            <Box className={ classes.row }>
+                <ToggleButtonGroup
+                    value={ value }
+                    exclusive
+                    onChange={ onChange }
+                    color='primary'
+                >
+                    <ToggleButton
+                        color='primary'
+                        value="all"
+                        aria-label="left aligned"
+                    >
+                        All
+                    </ToggleButton>
+                    <ToggleButton
+                        color='primary'
+                        value="active"
+                        aria-label="centered"
+                    >
+                        Active
+                    </ToggleButton>
+                    <ToggleButton
+                        color='primary'
+                        value="completed"
+                        aria-label="right aligned"
+                    >
+                        Completed
+                    </ToggleButton>
+                </ToggleButtonGroup>
+                <Typography>
+                    { notDoneTodos.length } items left
+                </Typography>
+            </Box>
+            <Button
+                onClick={ onClearCompleted }
             >
-                <ToggleButton
-                    color='primary'
-                    value="all"
-                    aria-label="left aligned"
-                >
-                    All
-                </ToggleButton>
-                <ToggleButton
-                    color='primary'
-                    value="active"
-                    aria-label="centered"
-                >
-                    Active
-                </ToggleButton>
-                <ToggleButton
-                    color='primary'
-                    value="completed"
-                    aria-label="right aligned"
-                >
-                    Completed
-                </ToggleButton>
-            </ToggleButtonGroup>
+                Clear completed
+            </Button>
         </Box>
     );
 };

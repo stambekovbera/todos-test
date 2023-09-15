@@ -1,1 +1,12 @@
-.filters {}
+.filters {
+    align-items: center;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.row {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+}

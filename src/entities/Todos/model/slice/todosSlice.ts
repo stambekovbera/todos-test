@@ -6,7 +6,7 @@ const initialState: ITodosSchema = {
     sort: 'all',
 };
 
-export const todosSlice = createSlice({
+export const todosSlice = createSlice( {
     name: 'todosSlice',
     initialState,
     reducers: {
@@ -19,22 +19,24 @@ export const todosSlice = createSlice({
         changeTodo: (state, action: PayloadAction<ITodo>) => {
             const currentTodo = action.payload;
 
-            state.todos = state.todos.map((todo) => {
+            state.todos = state.todos.map( (todo) => {
                 if (todo.id === currentTodo.id) {
                     return currentTodo;
                 }
 
                 return todo;
-            });
+            } );
         },
         clearCompletedTodos: (state) => {
-            state.todos = state.todos.filter( (todo) => Boolean( !todo.isDone ) );
+            if (state.todos.find( (todo) => todo.isDone )) {
+                state.todos = state.todos.filter( (todo) => Boolean( !todo.isDone ) );
+            }
         },
         changeSort: (state, action: PayloadAction<ITodosSort>) => {
             state.sort = action.payload;
         },
     },
-});
+} );
 
 export const {
     reducer: todosReducer,
