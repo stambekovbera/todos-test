@@ -1,7 +1,11 @@
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { AppDispatch } from '@/shared/config/storeConfig/store.ts';
+import { ITodosSchema } from '@/entities/Todos';
 
 export interface IStoreSchema {
+    todos: ITodosSchema;
+
+    temp?: undefined;
 }
 
 export type StoreSchemaKey = keyof IStoreSchema;

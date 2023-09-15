@@ -8,6 +8,7 @@ import {
 } from '@reduxjs/toolkit';
 import { createReducerManager } from './reducerManager';
 import { IReducerManager, IStoreSchema } from './StoreSchema.ts';
+import { todosReducer } from '@/entities/Todos';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 
 interface IReduxStore extends ToolkitStore<IStoreSchema, AnyAction, [ ThunkMiddleware<IStoreSchema, AnyAction> ]> {
@@ -17,6 +18,7 @@ interface IReduxStore extends ToolkitStore<IStoreSchema, AnyAction, [ ThunkMiddl
 export const createReduxStore = (initialState?: IStoreSchema, asyncReducers?: ReducersMapObject<IStoreSchema>) => {
     const rootReducers: ReducersMapObject<IStoreSchema> = {
         ...asyncReducers,
+        todos: todosReducer,
     };
 
     const reducerManager = createReducerManager( rootReducers );
