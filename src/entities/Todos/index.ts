@@ -8,3 +8,10 @@ export {
     todosReducer,
     todosActions
 } from './model/slice/todosSlice.ts';
+
+export {
+    getTodos
+} from './model/selectors/getTodos/getTodos.ts';
+export {
+    getTodosState
+} from './model/selectors/getTodosState/getTodosState.ts';
