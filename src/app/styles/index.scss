@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300;400;500;700&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300;400;500;700&display=swap';
 @import 'reset';
 @import './vars/global';
 
@@ -9,7 +9,7 @@
 }
 
 body {
-    background: #dedddd;
+    background: var(--background);
     color: #000000;
     font: var(--font-m);
 }

@@ -16,4 +16,10 @@
     /* COLORS */
     --primary: #cd6799;
     --primary-rgba: 205 103 153;
+    --background: #dedddd;
+
+    /* TOASTIFY COLORS */
+    --toastify-color-dark: var(--background);
+    --toastify-color-success: var(--primary);
+    --toastify-text-color-dark: var(--primary);
 }

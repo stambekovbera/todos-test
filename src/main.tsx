@@ -1,4 +1,3 @@
-import '@/app/styles/index.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import App from '@/app/App.tsx';
 import ReactDOM from 'react-dom/client';
@@ -7,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from '@/app/providers/StoreProvider';
 import { ThemeProvider } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
+
+import '@/app/styles/index.scss';
 
 ReactDOM.createRoot( document.getElementById( 'root' )! ).render(
     <ThemeProvider theme={ theme }>
@@ -21,6 +22,7 @@ ReactDOM.createRoot( document.getElementById( 'root' )! ).render(
                     newestOnTop={ false }
                     closeOnClick
                     pauseOnHover
+                    theme='dark'
                 />
             </StoreProvider>
         </BrowserRouter>
