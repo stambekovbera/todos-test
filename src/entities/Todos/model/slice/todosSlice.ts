@@ -11,7 +11,7 @@ export const todosSlice = createSlice( {
     initialState,
     reducers: {
         addTodo: (state, action: PayloadAction<ITodo>) => {
-            state.todos = [ ...state.todos, action.payload ];
+            state.todos.push( action.payload );
         },
         removeTodo: (state, action: PayloadAction<number | string>) => {
             state.todos = state.todos.filter( (todo) => todo.id !== action.payload );
