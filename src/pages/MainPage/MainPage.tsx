@@ -3,7 +3,7 @@ import cn from 'classnames';
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { TodoAdd } from '@/widgets/TodoAdd';
-import { TodoList } from '@/widgets/TodoList/ui/TodoList.tsx';
+import { TodoList } from '@/widgets/TodoList';
 
 interface IMainPageProps {
     className?: string;

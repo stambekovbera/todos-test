@@ -15,3 +15,9 @@ export {
 export {
     getTodosState
 } from './model/selectors/getTodosState/getTodosState.ts';
+export {
+    getTodosSort
+} from './model/selectors/getTodosSort/getTodosSort.ts';
+export {
+    getSortedTodos
+} from './model/selectors/getSortedTodos/getSortedTodos.ts';

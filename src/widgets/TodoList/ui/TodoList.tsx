@@ -1,8 +1,9 @@
 import classes from './TodoList.module.scss';
 import cn from 'classnames';
 import React from 'react';
-import { Box } from '@mui/material';
-import { getTodos } from '@/entities/Todos';
+import { Box, Typography } from '@mui/material';
+import { getSortedTodos, getTodos } from '@/entities/Todos';
+import { TodoFilters } from '@/widgets/TodoFilters/ui/TodoFilters.tsx';
 import { TodoItem } from '@/widgets/TodoList/ui/TodoItem/TodoItem.tsx';
 import { useSelector } from 'react-redux';
 
@@ -16,16 +17,38 @@ const TodoListComponent: React.FC<ITodoListProps> = (props) => {
     } = props;
 
     const todos = useSelector( getTodos );
+    const sortedTodos = useSelector( getSortedTodos );
 
     return (
-        <Box className={ cn( classes.list, {}, [ className ] ) }>
-            { todos.map( (todo) => (
-                <TodoItem
-                    key={ todo.id }
-                    todo={ todo }
-                />
-            ) ) }
-        </Box>
+        <>
+            { todos.length > 0 && (
+                <Box className={ cn( classes.listWrapper, {}, [ className ] ) }>
+                    <TodoFilters/>
+
+                    { sortedTodos.length > 0
+                        ? (
+                            <Box className={ classes.list }>
+                                { sortedTodos.map( (todo) => (
+                                    <TodoItem
+                                        key={ todo.id }
+                                        todo={ todo }
+                                    />
+                                ) ) }
+                            </Box>
+                        )
+                        : (
+                            <Typography
+                                variant='h4'
+                                component='p'
+                            >
+                                Not todos
+                            </Typography>
+                        )
+                    }
+                </Box>
+            )
+            }
+        </>
     );
 };
 

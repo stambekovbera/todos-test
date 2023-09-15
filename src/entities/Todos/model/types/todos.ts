@@ -1,3 +1,5 @@
+export type ITodosSort = 'all' | 'active' | 'completed';
+
 export interface ITodo {
     id: number | string;
     title: string;
@@ -6,4 +8,5 @@ export interface ITodo {
 
 export interface ITodosSchema {
     todos: ITodo[];
+    sort: ITodosSort;
 }

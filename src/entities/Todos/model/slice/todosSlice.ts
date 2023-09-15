@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITodo, ITodosSchema } from '@/entities/Todos/model/types/todos.ts';
+import { ITodo, ITodosSchema, ITodosSort } from '@/entities/Todos/model/types/todos.ts';
 
 const initialState: ITodosSchema = {
     todos: [],
+    sort: 'all',
 };
 
 export const todosSlice = createSlice({
@@ -28,6 +29,9 @@ export const todosSlice = createSlice({
         },
         clearCompletedTodos: (state) => {
             state.todos = state.todos.filter( (todo) => Boolean( !todo.isDone ) );
+        },
+        changeSort: (state, action: PayloadAction<ITodosSort>) => {
+            state.sort = action.payload;
         },
     },
 });
