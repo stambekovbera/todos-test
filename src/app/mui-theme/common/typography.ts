@@ -42,6 +42,6 @@ export default {
         lineHeight: 'normal',
     },
 
-    fontFamily: [ 'Roboto' ].join( ',' ),
+    fontFamily: [ 'Shantell Sans' ].join( ',' ),
     fontSize: 16,
 };

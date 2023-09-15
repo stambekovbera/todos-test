@@ -5,7 +5,7 @@ const black = '#000000';
 
 const main = '#CD6799';
 
-const secondary = '#a9386f';
+const secondary = colors.deepPurple[900];
 
 export default {
     black,

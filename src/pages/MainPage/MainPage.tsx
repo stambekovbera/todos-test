@@ -1,9 +1,11 @@
 import classes from './MainPage.module.scss';
 import cn from 'classnames';
 import React from 'react';
+import { Box, Typography } from '@mui/material';
+import { TodoAdd } from '@/widgets/TodoAdd';
 
 interface IMainPageProps {
-	className?: string;
+    className?: string;
 }
 
 const MainPage: React.FC<IMainPageProps> = (props) => {
@@ -11,9 +13,23 @@ const MainPage: React.FC<IMainPageProps> = (props) => {
         className = '',
     } = props;
     return (
-        <div className={ cn( classes.page, {}, [ className ] ) }>
-            Главная страница
-        </div>
+        <Box className={ cn( classes.page, {}, [ className ] ) }>
+            <Box
+                className={ classes.pageContent }
+            >
+                <Typography
+                    className={ classes.title }
+                    variant='h1'
+                    component='h1'
+                >
+                    Todos
+                </Typography>
+
+                <Box>
+                    <TodoAdd/>
+                </Box>
+            </Box>
+        </Box>
     );
 };
 

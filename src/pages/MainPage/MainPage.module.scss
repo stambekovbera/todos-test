@@ -1,1 +1,28 @@
-.page {}
+.page {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.page-content {
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    padding: 30px;
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+
+    &:global.MuiTypography-root {
+        color: var(--primary);
+        font-weight: 300;
+    }
+}

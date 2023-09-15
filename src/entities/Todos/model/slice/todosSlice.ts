@@ -9,11 +9,22 @@ export const todosSlice = createSlice({
     name: 'todosSlice',
     initialState,
     reducers: {
-        setTodo: (state, action: PayloadAction<ITodo>) => {
+        addTodo: (state, action: PayloadAction<ITodo>) => {
             state.todos = [ ...state.todos, action.payload ];
         },
-        deleteTodo: (state, action: PayloadAction<number | string>) => {
+        removeTodo: (state, action: PayloadAction<number | string>) => {
             state.todos = state.todos.filter( (todo) => todo.id !== action.payload );
+        },
+        changeTodo: (state, action: PayloadAction<ITodo>) => {
+            const currentTodo = action.payload;
+
+            state.todos = state.todos.map((todo) => {
+                if (todo.id === currentTodo.id) {
+                    return currentTodo;
+                }
+
+                return todo;
+            });
         },
         clearCompletedTodos: (state) => {
             state.todos = state.todos.filter( (todo) => Boolean( !todo.isDone ) );
