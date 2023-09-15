@@ -26,7 +26,7 @@ const MainPage: React.FC<IMainPageProps> = (props) => {
                     Todos
                 </Typography>
 
-                <Box>
+                <Box className={ classes.todoContent }>
                     <TodoAdd/>
                     <TodoList/>
                 </Box>
