@@ -1,7 +1,7 @@
 import classes from './TodoItem.module.scss';
 import cn from 'classnames';
 import React from 'react';
-import { Box, Checkbox, IconButton, Tooltip, Typography } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, IconButton, Tooltip } from '@mui/material';
 import { DeleteRounded as DeleteIcon } from '@mui/icons-material';
 import { ITodo, todosActions } from '@/entities/Todos';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch.ts';
@@ -33,20 +33,18 @@ const TodoItemComponent: React.FC<ITodoItemProps> = (props) => {
     return (
         <Box className={ cn( classes.todo, {}, [ className ] ) }>
             <Box className={ classes.row }>
-                <Tooltip title='Todo is done'>
-                    <Checkbox
-                        color='primary'
-                        checked={ todo.isDone }
-                        onChange={ toggleIsDone }
-                    />
-                </Tooltip>
-
-                <Typography
-                    variant='h4'
-                    component='p'
-                >
-                    { todo.title }
-                </Typography>
+                <FormControlLabel
+                    control={
+                        <Tooltip title='Todo is done'>
+                            <Checkbox
+                                color='primary'
+                                checked={ todo.isDone }
+                                onChange={ toggleIsDone }
+                            />
+                        </Tooltip>
+                    }
+                    label={ todo.title }
+                />
             </Box>
             <Tooltip title='Delete todo'>
                 <IconButton
