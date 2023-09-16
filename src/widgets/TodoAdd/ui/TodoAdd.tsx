@@ -7,6 +7,7 @@ import { IconButton, TextField, Tooltip } from '@mui/material';
 import { notification } from '@/shared/lib/notification/notification.ts';
 import { todosActions } from '@/entities/Todos';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch.ts';
+import { useKeyDown } from '@/shared/lib/hooks/useKeyDown.ts';
 
 interface ITodoAddProps {
     className?: string;
@@ -29,19 +30,26 @@ const TodoAddComponent: React.FC<ITodoAddProps> = (props) => {
     }, [] );
 
     const onAddTodo = React.useCallback( () => {
-        dispatch( todosActions.addTodo( {
-            id: uuid(),
-            title: value,
-            isDone: false,
-        } ) );
+        if (value.length > 0) {
+            dispatch( todosActions.addTodo( {
+                id: uuid(),
+                title: value,
+                isDone: false,
+            } ) );
 
-        setValue( () => '' );
+            setValue( () => '' );
 
-        notification({
-            message: 'Todo added successfully',
-            type: 'success'
-        });
+            notification({
+                message: 'Todo added successfully',
+                type: 'success'
+            });
+        }
     }, [ dispatch, value ] );
+
+    useKeyDown({
+        keyCode: 'Enter',
+        callback: onAddTodo,
+    });
 
     return (
         <TextField
